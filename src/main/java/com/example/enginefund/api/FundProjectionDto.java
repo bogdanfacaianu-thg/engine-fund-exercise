@@ -7,12 +7,12 @@ public class FundProjectionDto {
     private BigDecimal currentFundBalance;
     private BigDecimal targetFund;
     private BigDecimal yearsRemaining;
-    private BigDecimal plannedAverageYearlyHours;
     private BigDecimal remainingHours;
     private BigDecimal engineFundPerHourCurrent;
     private BigDecimal finalProjectedBalance;
     private BigDecimal differenceAtEnd;
     private BigDecimal suggestedCashCall;
+     private BigDecimal suggestedYearlyCashCall;
     private BigDecimal suggestedEngineFundPerHour;
 
     public BigDecimal getCurrentFundBalance() {
@@ -37,14 +37,6 @@ public class FundProjectionDto {
 
     public void setYearsRemaining(BigDecimal yearsRemaining) {
         this.yearsRemaining = yearsRemaining;
-    }
-
-    public BigDecimal getPlannedAverageYearlyHours() {
-        return plannedAverageYearlyHours;
-    }
-
-    public void setPlannedAverageYearlyHours(BigDecimal plannedAverageYearlyHours) {
-        this.plannedAverageYearlyHours = plannedAverageYearlyHours;
     }
 
     public BigDecimal getRemainingHours() {
@@ -85,6 +77,14 @@ public class FundProjectionDto {
 
     public void setSuggestedCashCall(BigDecimal suggestedCashCall) {
         this.suggestedCashCall = suggestedCashCall;
+    }
+
+    public BigDecimal getSuggestedYearlyCashCall() {
+        return suggestedYearlyCashCall;
+    }
+
+    public void setSuggestedYearlyCashCall(BigDecimal suggestedYearlyCashCall) {
+        this.suggestedYearlyCashCall = suggestedYearlyCashCall;
     }
 
     public BigDecimal getSuggestedEngineFundPerHour() {

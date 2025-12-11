@@ -9,8 +9,7 @@ public class ProjectionRequest {
     private BigDecimal totalPeriodYears;
     private BigDecimal yearsElapsed;
     private BigDecimal hoursFlownSoFar;
-    private BigDecimal plannedAverageYearlyHours;
-    private BigDecimal maxRealisticYearlyHours;
+    private BigDecimal targetYearlyHours;
     private BigDecimal engineFundPerHour;
 
     public BigDecimal getCurrentFundBalance() {
@@ -53,20 +52,12 @@ public class ProjectionRequest {
         this.hoursFlownSoFar = hoursFlownSoFar;
     }
 
-    public BigDecimal getPlannedAverageYearlyHours() {
-        return plannedAverageYearlyHours;
+    public BigDecimal getTargetYearlyHours() {
+        return targetYearlyHours;
     }
 
-    public void setPlannedAverageYearlyHours(BigDecimal plannedAverageYearlyHours) {
-        this.plannedAverageYearlyHours = plannedAverageYearlyHours;
-    }
-
-    public BigDecimal getMaxRealisticYearlyHours() {
-        return maxRealisticYearlyHours;
-    }
-
-    public void setMaxRealisticYearlyHours(BigDecimal maxRealisticYearlyHours) {
-        this.maxRealisticYearlyHours = maxRealisticYearlyHours;
+    public void setTargetYearlyHours(BigDecimal targetYearlyHours) {
+        this.targetYearlyHours = targetYearlyHours;
     }
 
     public BigDecimal getEngineFundPerHour() {

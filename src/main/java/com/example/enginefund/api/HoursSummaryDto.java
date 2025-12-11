@@ -8,12 +8,11 @@ public class HoursSummaryDto {
     private BigDecimal yearsElapsed;
     private BigDecimal yearsRemaining;
     private BigDecimal hoursFlownSoFar;
-    private BigDecimal plannedAverageYearlyHours;
     private BigDecimal expectedHoursSoFar;
     private BigDecimal differenceHours;
     private BigDecimal actualAverageYearlyHoursSoFar;
     private BigDecimal requiredAverageYearlyHoursRemaining;
-    private BigDecimal maxRealisticYearlyHours;
+    private BigDecimal targetYearlyHours;
     private boolean hoursPlanRealistic;
 
     public BigDecimal getTotalPeriodYears() {
@@ -48,14 +47,6 @@ public class HoursSummaryDto {
         this.hoursFlownSoFar = hoursFlownSoFar;
     }
 
-    public BigDecimal getPlannedAverageYearlyHours() {
-        return plannedAverageYearlyHours;
-    }
-
-    public void setPlannedAverageYearlyHours(BigDecimal plannedAverageYearlyHours) {
-        this.plannedAverageYearlyHours = plannedAverageYearlyHours;
-    }
-
     public BigDecimal getExpectedHoursSoFar() {
         return expectedHoursSoFar;
     }
@@ -88,12 +79,12 @@ public class HoursSummaryDto {
         this.requiredAverageYearlyHoursRemaining = requiredAverageYearlyHoursRemaining;
     }
 
-    public BigDecimal getMaxRealisticYearlyHours() {
-        return maxRealisticYearlyHours;
+    public BigDecimal getTargetYearlyHours() {
+        return targetYearlyHours;
     }
 
-    public void setMaxRealisticYearlyHours(BigDecimal maxRealisticYearlyHours) {
-        this.maxRealisticYearlyHours = maxRealisticYearlyHours;
+    public void setTargetYearlyHours(BigDecimal targetYearlyHours) {
+        this.targetYearlyHours = targetYearlyHours;
     }
 
     public boolean isHoursPlanRealistic() {

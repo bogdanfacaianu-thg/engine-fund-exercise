@@ -28,21 +28,17 @@ public class EngineFundServiceImpl implements EngineFundService {
 
         BigDecimal yearsRemaining = totalYears.subtract(elapsed);
 
-        BigDecimal plannedHoursPerYear = request.getPlannedAverageYearlyHours();
+        BigDecimal realisticHoursPerYear = request.getTargetYearlyHours();
         BigDecimal hoursSoFar = request.getHoursFlownSoFar();
-        BigDecimal maxRealistic = request.getMaxRealisticYearlyHours();
 
-        if (plannedHoursPerYear == null) {
-            plannedHoursPerYear = zero;
+        if (realisticHoursPerYear == null) {
+            realisticHoursPerYear = zero;
         }
         if (hoursSoFar == null) {
             hoursSoFar = zero;
         }
-        if (maxRealistic == null) {
-            maxRealistic = zero;
-        }
 
-        BigDecimal expectedHoursSoFar = plannedHoursPerYear.multiply(elapsed);
+        BigDecimal expectedHoursSoFar = realisticHoursPerYear.multiply(elapsed);
         BigDecimal differenceHours = hoursSoFar.subtract(expectedHoursSoFar);
 
         BigDecimal actualAvgSoFar;
@@ -52,7 +48,7 @@ public class EngineFundServiceImpl implements EngineFundService {
             actualAvgSoFar = zero;
         }
 
-        BigDecimal totalPlannedHours = totalYears.multiply(plannedHoursPerYear);
+        BigDecimal totalPlannedHours = totalYears.multiply(realisticHoursPerYear);
         BigDecimal remainingHoursNeeded = totalPlannedHours.subtract(hoursSoFar);
 
         BigDecimal requiredAvgRemaining;
@@ -63,7 +59,7 @@ public class EngineFundServiceImpl implements EngineFundService {
         }
 
         boolean realistic = false;
-        if (requiredAvgRemaining.compareTo(maxRealistic) >= 0) {
+        if (requiredAvgRemaining.compareTo(realisticHoursPerYear) >= 0) {
             realistic = true;
         }
 
@@ -71,12 +67,11 @@ public class EngineFundServiceImpl implements EngineFundService {
         hs.setYearsElapsed(elapsed);
         hs.setYearsRemaining(yearsRemaining);
         hs.setHoursFlownSoFar(hoursSoFar);
-        hs.setPlannedAverageYearlyHours(plannedHoursPerYear);
         hs.setExpectedHoursSoFar(expectedHoursSoFar);
         hs.setDifferenceHours(differenceHours);
         hs.setActualAverageYearlyHoursSoFar(actualAvgSoFar);
         hs.setRequiredAverageYearlyHoursRemaining(requiredAvgRemaining);
-        hs.setMaxRealisticYearlyHours(maxRealistic);
+        hs.setTargetYearlyHours(realisticHoursPerYear);
         hs.setHoursPlanRealistic(realistic);
 
         BigDecimal currentFund = request.getCurrentFundBalance();
@@ -89,7 +84,7 @@ public class EngineFundServiceImpl implements EngineFundService {
             efh = zero;
         }
 
-        BigDecimal remainingHours = yearsRemaining.multiply(plannedHoursPerYear);
+        BigDecimal remainingHours = yearsRemaining.multiply(realisticHoursPerYear);
         BigDecimal finalProjectedBalance = currentFund.add(remainingHours.multiply(efh));
 
         BigDecimal differenceAtEnd = finalProjectedBalance.subtract(targetFund);
@@ -98,13 +93,15 @@ public class EngineFundServiceImpl implements EngineFundService {
             suggestedCashCall = differenceAtEnd;
         }
 
+        // TODO: Implement suggested yearly cash call calculation
+        BigDecimal suggestedYearlyCashCall = zero;
+
         // TODO: Implement suggested engine fund per hour calculation
         BigDecimal suggestedEfh = null;
 
         fp.setCurrentFundBalance(scaleMoney(currentFund));
         fp.setTargetFund(scaleMoney(targetFund));
         fp.setYearsRemaining(yearsRemaining);
-        fp.setPlannedAverageYearlyHours(plannedHoursPerYear);
         fp.setRemainingHours(remainingHours);
         fp.setEngineFundPerHourCurrent(scaleMoney(efh));
         fp.setFinalProjectedBalance(finalProjectedBalance);
